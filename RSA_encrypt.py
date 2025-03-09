@@ -22,8 +22,8 @@ print(f"n = {n}")
 print(f"phi(n) = {phi}")
 print(f"e = {e}")
 print(f"d = {d}")
-print(f"-> Khóa công khai: ({e}, {n})")
-print(f"-> Khóa bí mật: ({d, n})")
+print(f"-> Khóa công khai: {e, n}")
+print(f"-> Khóa bí mật: {d, n}")
     
 # Lưu thông tin khóa và định dạng file
 info = {
