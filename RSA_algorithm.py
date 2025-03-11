@@ -2,6 +2,7 @@ import random
 import math
 import os
 import time
+import json
 
 # Kiểm tra số nguyên tố
 def is_prime(n):

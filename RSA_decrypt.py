@@ -1,24 +1,28 @@
 from RSA_algorithm import *
 
-ciphertext_file = "ciphertext.txt"
-with open(ciphertext_file, 'r') as f:
-    ciphertext = ciphertext = list(map(int, f.read().split()))
-    
-# Lấy thông tin khóa và định dạng tệp
-info = {}
-with open("info.txt", 'r') as f:
-    for line in f:
-        if line.strip():
-            k, v = line.split(':')
-            info[k.strip()] = v.strip()
+# Lấy nội dung thông điệp 
+print("-" * 100)
+message_file = input("Nhập đường dẫn đến file thông điệp: ")
+with open(message_file, "r") as f:
+    message = json.load(f)
 
-n = int(info["n"])
-d = int(info["d"])
-ext = info["ext"]
-    
-# Giải mã ciphertext
-decrypted = decrypt(ciphertext, d, n)
-decrypted_file = "decrypted" + ext
-with open(decrypted_file, 'wb') as f:
-    f.write(bytes(decrypted))
-print(f"File đã giải mã đã được lưu tại: {decrypted_file}")
+ciphertext = message["ciphertext"]
+filename = message["filename"]
+
+# Lấy nội dung khóa bí mật
+priv_file = "private_key.json"
+with open(priv_file, "r") as f:
+    private_key = json.load(f)
+
+d = private_key["d"]
+n = private_key["n"]
+
+# Thực hiện giải mã và chuyển về bytes
+decrypted_int = decrypt(ciphertext, d, n)
+file_bytes = bytes(decrypted_int)
+
+# Lưu lại file đã giải mã
+out_file = "decrypted_" + filename
+with open(out_file, "wb") as f:
+    f.write(file_bytes)
+print(f"file đã được giải mã và lưu tại {out_file}", "-" * 100, sep='\n')
