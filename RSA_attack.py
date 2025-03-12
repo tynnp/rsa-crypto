@@ -40,12 +40,12 @@ print(f"Tính được phi(n) = {phi}")
 print(f"Tính được d = {d}")
     
 decrypted_int = decrypt(ciphertext, d, n)
-file_bytes = bytes(decrypted_int)
+plaintext_bytes = bytes(decrypted_int)
 elapsed_time = time.time() - start_time
 
 # Kết thúc thám mã và lưu lại kết quả 
 out_file = "decrypted_" + filename
 with open(out_file, "wb") as f:
-    f.write(file_bytes)
+    f.write(plaintext_bytes)
 print(f"file đã được giải mã và lưu tại {out_file}")
 print(f"Thời gian thực hiện thám mã: {elapsed_time:.6f} giây", "-" * 100, sep='\n')

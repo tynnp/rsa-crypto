@@ -4,8 +4,8 @@ from RSA_algorithm import *
 print("-" * 100)
 file_path = input("Nhập đường dẫn đến file cần mã hóa: ")
 with open(file_path, "rb") as f:
-    file_bytes = f.read()
-plaintext_int = list(file_bytes)
+    plaintext_bytes = f.read()
+plaintext_int = list(plaintext_bytes)
 
 # Lấy nội dung khóa công khai
 pub_file = "public_key.json"
